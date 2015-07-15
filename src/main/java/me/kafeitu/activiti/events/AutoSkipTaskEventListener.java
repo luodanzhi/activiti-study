@@ -26,7 +26,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 public class AutoSkipTaskEventListener implements ActivitiEventListener {
 
-    public static Set<String> skipedTasks = new HashSet<>();
+    public static Set<String> skipedTasks = new HashSet<String>();
 
     @Override
     public void onEvent(ActivitiEvent event) {
@@ -38,7 +38,7 @@ public class AutoSkipTaskEventListener implements ActivitiEventListener {
             if (entity instanceof TaskEntity) {
                 TaskEntity taskEntity = (TaskEntity) entityEvent.getEntity();
 
-                Map<String, String> skipTasks = new HashMap<>();
+                Map<String, String> skipTasks = new HashMap<String, String>();
                 skipTasks.put("usertask2", "user1"); // 预先设定
                 skipTasks.put("usertask4", "user1"); // 动态设定以
                 skipTasks.put("usertask5", "user1"); // 候选人
@@ -57,7 +57,7 @@ public class AutoSkipTaskEventListener implements ActivitiEventListener {
                 System.out.println("key: " + taskDefinitionKey + ", userId=" + userId);
 
                 // 查询当前人的组
-                List<String> groupIds = new ArrayList<>();
+                List<String> groupIds = new ArrayList<String>();
                 List<Group> list = identityService.createGroupQuery().groupMember(userId).list();
                 for (Group group : list) {
                     groupIds.add(group.getId());
